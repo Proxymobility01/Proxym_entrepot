@@ -4,7 +4,7 @@
 
 @section('content')
 
-
+<div class="main-content">
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
     <div class="container-fluid">
@@ -164,7 +164,7 @@
     </div>
 </div>
 </div>
-
+</div>
 <script>
 document.getElementById('photo').addEventListener('change', function() {
     var fileName = this.files[0] ? this.files[0].name : 'No file chosen';

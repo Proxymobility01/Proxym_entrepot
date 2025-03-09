@@ -49,8 +49,8 @@ class EntrepotUserController extends Controller
         $validatedData = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'phone' => 'required|string|max:255|unique:users_entrepots',
-            'email' => 'required|email|unique:users_entrepots', // Validation de l'email
+            'phone' => 'required|string',
+            'email' => 'required|email', // Validation de l'email
             'ville' => 'required|string|max:255',
             'quartier' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:8048',
@@ -71,6 +71,9 @@ class EntrepotUserController extends Controller
         // Ajouter un nouvel agent swap avec l'agence associée
         $entrepot = session('entrepot');
         $validatedData['id_entrepot'] = $entrepot->id; // Associer l'agent swap à l'agence de la session
+
+          // Hasher le mot de passe
+          $validatedData['password'] = Hash::make($validatedData['password']);
     
         // Créer l'agent swap dans la base de données
         UsersEntrepot::create($validatedData);
